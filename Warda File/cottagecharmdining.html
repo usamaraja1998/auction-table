@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auction Page</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./assests/style3.css">
+</head>
+<body >
+
+<!-- Container for the Auction Page -->
+<div class="container mt-4">
+    <div class="row">
+        <!-- Left Side: Car Images & 360 Viewer -->
+        <div class="col-md-7">
+            <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="img">
+                        <img src="./assests/images/dining table/14.png.jpg" class="img" alt="Chair">
+                    </div>
+            
+                </div>
+                
+            </div>
+           
+        </div>
+
+        <!-- Right Side: Auction Details -->
+        <div class="col-md-5">
+            <div class="card p-3">
+                <h3>Upholstered Lounge Chair</h3>
+                <ul class="list-unstyled">
+                    <li><strong>Bids:</strong> <span id="bidCount">36</span></li>
+                    <li><strong>Time Remaining:</strong> <span id="timeRemaining">2h: 30m</span></li>
+                </ul>
+                <div class="alert alert-success">
+                    Current Price: <strong id="currentPrice">RS 60,000</strong>
+                </div>
+                <!-- Bidding Area -->
+                <div class="input-group mb-3">
+                    <span class="input-group-text">RS</span>
+                    <input type="number" class="form-control" id="bidAmount" value="60,000" min="60,000">
+                    <button onclick="showAlert()" class="btn btn-danger" id="bidNowBtn">Bid Now</button>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="agreeTerms">
+                    <label class="form-check-label" for="agreeTerms">
+                        I agree to <a href="#">Terms and Conditions</a>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap 5 JS Bundle -->
+<script>
+    // ALERT //
+    function showAlert() {
+        alert(`Your Bid Has Been Sucessfully Placed`)
+    }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

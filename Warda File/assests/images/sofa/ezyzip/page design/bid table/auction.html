@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auction Bid Interface</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        .container {
+            max-width: 400px;
+            margin: 20px auto;
+            background: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .header {
+            padding: 15px;
+            background-color: #f8f8f8;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .content {
+            padding: 20px;
+        }
+        .info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        .info span {
+            color: #555;
+        }
+        .price-section {
+            background: #333;
+            color: #0f0;
+            padding: 10px;
+            text-align: center;
+            font-size: 20px;
+            border-radius: 5px;
+        }
+        .bidding-section {
+            margin-top: 15px;
+        }
+        .bidding-section input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .terms {
+            font-size: 12px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+        .bid-button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background: red;
+            color: white;
+            font-size: 16px;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .bid-button:hover {
+            background: darkred;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Header -->
+    <div class="header">
+        <h1>2024 Audi RS 7</h1>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+        <div class="info">
+            <span><strong>Bids:</strong> 96</span>
+            <span><strong>Mileage:</strong> 2,433 Km</span>
+            <span><strong>Time:</strong> 2h:30m</span>
+        </div>
+
+        <div class="info">
+            <span><strong>End Date:</strong> Dec 17, 06:00 PM</span>
+        </div>
+
+        <!-- Current Price -->
+        <div class="price-section">
+            <span>Current Price</span>
+            <div><strong>AED 430,100</strong></div>
+            <span style="font-size: 12px; color: #bbb;">Min Increment: AED 100</span>
+        </div>
+
+        <!-- Bidding Section -->
+        <div class="bidding-section">
+            <label for="bidAmount"><strong>Your Bid:</strong></label>
+            <input type="number" id="bidAmount" value="430200" step="100" min="430200">
+            
+            <div class="terms">
+                <input type="checkbox" id="terms" required>
+                <label for="terms"> I agree to <a href="#">Terms and Conditions</a> & I have inspected the item</label>
+            </div>
+
+            <button class="bid-button" onclick="placeBid()">Bid Now</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function placeBid() {
+        const bidAmount = document.getElementById('bidAmount').value;
+        const termsChecked = document.getElementById('terms').checked;
+
+        if (!termsChecked) {
+            alert("You must agree to the terms and conditions.");
+            return;
+        }
+
+        alert(`Your bid of AED ${bidAmount} has been placed successfully!`);
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Required meta tags for Bootstrap 5 -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <title>Emirates Auction Style Homepage</title>
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Optional: Your Custom CSS -->
+  <style>
+    body {
+      background-color: #f5f5f5;
+    }
+    /* Example styling adjustments */
+    .navbar {
+      background-color: #222; /* dark background similar to the example */
+    }
+    .navbar .nav-link, .navbar .navbar-brand {
+      color: #fff !important;
+    }
+    .hero-section {
+      background-color: #000;
+      color: #fff;
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+    .hero-section h1 {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+    .hero-section p {
+      font-size: 1.25rem;
+    }
+    .hero-section button {
+      background-color: #fff;
+      color: #000;
+      border: none;
+      font-weight: bold;
+      padding: 0.75rem 1.5rem;
+    }
+
+    .category-title {
+      margin-bottom: 1rem;
+      font-weight: bold;
+      font-size: 1.25rem;
+    }
+
+    .auction-card {
+      border: none;
+      border-radius: 0;
+      background-color: #fff;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+    .auction-card:hover {
+      transform: scale(1.02);
+    }
+    .auction-card img {
+      width: 100%;
+      height: auto;
+    }
+    .auction-card .card-body {
+      text-align: center;
+      font-size: 1rem;
+      font-weight: 500;
+    }
+    /* Responsive adjustments if needed */
+    @media (min-width: 992px) {
+      .hero-section h1 {
+        font-size: 2.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark px-3">
+  <a class="navbar-brand fw-bold" href="#">YourBrand</a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+          data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" 
+          aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  
+  <div class="collapse navbar-collapse ms-auto" id="navbarNav">
+    <ul class="navbar-nav ms-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="#">Motors (2312)</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Prestigious Numbers (253)</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Properties (84)</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Surplus (269)</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">For Rent (14)</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Hero / CTA Section -->
+<div class="hero-section text-center">
+  <div class="container">
+    <h1>ADD DEPOSIT TO START BIDDING NOW</h1>
+    <p class="mb-4">Get started with our easy, secure online auction platform.</p>
+    <button>Learn More</button>
+  </div>
+</div>
+
+<!-- Main Content -->
+<div class="container">
+  <!-- Example Category: License Plates -->
+  <div class="row mb-4">
+    <div class="col-12">
+      <h2 class="category-title">License Plates</h2>
+    </div>
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
+      <div class="card auction-card">
+        <!-- Replace with actual image of plate -->
+        <img src="https://via.placeholder.com/300x150?text=Abu+Dhabi+Plates" alt="Abu Dhabi Plates">
+        <div class="card-body">
+          <p>Abu Dhabi Plates</p>
+          <a href="#" class="btn btn-outline-dark btn-sm">Request Plate</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
+      <div class="card auction-card">
+        <img src="https://via.placeholder.com/300x150?text=Sharjah+Plates" alt="Sharjah Plates">
+        <div class="card-body">
+          <p>Sharjah Plates</p>
+          <a href="#" class="btn btn-outline-dark btn-sm">Request Plate</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
+      <div class="card auction-card">
+        <img src="https://via.placeholder.com/300x150?text=Ajman+Plates" alt="Ajman Plates">
+        <div class="card-body">
+          <p>Ajman Plates</p>
+          <a href="#" class="btn btn-outline-dark btn-sm">Buy Now</a>
+        </div>
+      </div>
+    </div>
+    <!-- Add more plate cards as needed -->
+  </div>
+
+  <!-- Example Category: Cars Auction -->
+  <div class="row mb-4">
+    <div class="col-12">
+      <h2 class="category-title">Cars Auction (Online Bidding)</h2>
+    </div>
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
+      <div class="card auction-card">
+        <img src="https://via.placeholder.com/300x150?text=Car+Thumbnail" alt="Cars Auction">
+        <div class="card-body">
+          <p>Cars Auction</p>
+          <p><small>Ends in 1h:45m</small></p>
+          <a href="#" class="btn btn-outline-dark btn-sm">Bid Now</a>
+        </div>
+      </div>
+    </div>
+    <!-- Add more car cards as needed -->
+  </div>
+
+  <!-- Example Category: Properties -->
+  <div class="row mb-4">
+    <div class="col-12">
+      <h2 class="category-title">Property Auction (Online Bidding)</h2>
+    </div>
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
+      <div class="card auction-card">
+        <img src="https://via.placeholder.com/300x150?text=Property" alt="Property Auction">
+        <div class="card-body">
+          <p>Properties</p>
+          <p><small>Ends in 45m:53s</small></p>
+          <a href="#" class="btn btn-outline-dark btn-sm">View Details</a>
+        </div>
+      </div>
+    </div>
+    <!-- Add more property cards as needed -->
+  </div>
+
+  <!-- Additional categories and items as needed -->
+</div>
+
+<!-- Footer -->
+<footer class="mt-5 py-4 text-center bg-dark text-white">
+  <div class="container">
+    <p class="mb-0">&copy; 2024 YourBrand. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

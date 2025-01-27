@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auction Bid</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="auction-container">
+        <div class="auction-header">
+            <h1>Auction Bid</h1>
+            <p>Place your bid before the time runs out!</p>
+        </div>
+
+        <div class="auction-item">
+            <img src="https://via.placeholder.com/400x300" alt="Auction Item" class="item-image">
+            <div class="item-details">
+                <h2>Item Name: Luxury Watch</h2>
+                <p>Current Bid: <span id="current-bid">$500</span></p>
+                <p>Time Left: <span id="timer">00:30</span></p>
+            </div>
+        </div>
+
+        <div class="bid-form">
+            <input type="number" id="bid-amount" placeholder="Enter your bid" min="1">
+            <button id="place-bid-btn">Place Bid</button>
+        </div>
+
+        <div id="bid-feedback"></div>
+
+        <div id="bid-history" class="bid-history">
+            <h3>Bid History</h3>
+            <ul id="history-list"></ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

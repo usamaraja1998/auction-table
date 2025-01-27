@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auction Table - Home</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- SweetAlert2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+
+    <!-- AOS CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./Assets/CSS/Style.css">
+
+    <script src="./Assets/JS/include.js"></script>
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <script>
+        document.write(nav)
+    </script>
+
+    <!-- Main Content: Login and Sign-Up Forms -->
+    <main class="container my-5">
+        <div class="auth-container">
+            <div class="toggle-btns">
+                <button id="loginToggle" class="btn active">Login</button>
+                <button id="signupToggle" class="btn">Sign Up</button>
+            </div>
+
+            <!-- Login Form -->
+            <form id="loginForm" class="form active">
+                <h3 class="text-center mb-4">Login to Auction Table</h3>
+                <div class="mb-3">
+                    <label for="loginEmail" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="loginEmail" placeholder="Enter your email" required>
+                    <div class="invalid-feedback">
+                        Please enter a valid email.
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="loginPassword" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="loginPassword" placeholder="Enter your password" required>
+                    <div class="invalid-feedback">
+                        Please enter your password.
+                    </div>
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="rememberMe">
+                    <label class="form-check-label" for="rememberMe">Remember Me</label>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Login</button>
+            </form>
+
+            <!-- Sign-Up Form -->
+            <form id="signupForm" class="form">
+                <h3 class="text-center mb-4">Create an Account</h3>
+                <div class="mb-3">
+                    <label for="signupName" class="form-label">Full Name</label>
+                    <input type="text" class="form-control" id="signupName" placeholder="Enter your full name" required>
+                    <div class="invalid-feedback">
+                        Please enter your full name.
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="signupEmail" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="signupEmail" placeholder="Enter your email" required>
+                    <div class="invalid-feedback">
+                        Please enter a valid email.
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="signupPassword" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="signupPassword" placeholder="Create a password" required>
+                    <div class="invalid-feedback">
+                        Please create a password.
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="signupConfirmPassword" class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control" id="signupConfirmPassword" placeholder="Confirm your password" required>
+                    <div class="invalid-feedback">
+                        Passwords do not match.
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Sign Up</button>
+            </form>
+
+            <!-- User Icon -->
+            <div id="userIcon" class="text-center mt-4" style="display: none;">
+                <i class="bi bi-person-circle" style="font-size: 50px;"></i>
+                <h5>Welcome, <span id="userName"></span></h5>
+                <button id="logoutBtn" class="btn btn-danger mt-3">Logout</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <script>
+        document.write(footer)
+    </script>
+
+    <!-- JavaScript for Form Toggle -->
+    <script>
+        // Form toggle buttons functionality
+        document.getElementById('loginToggle').addEventListener('click', () => {
+            document.getElementById('loginForm').classList.add('active');
+            document.getElementById('signupForm').classList.remove('active');
+            document.getElementById('loginToggle').classList.add('active');
+            document.getElementById('signupToggle').classList.remove('active');
+        });
+
+        document.getElementById('signupToggle').addEventListener('click', () => {
+            document.getElementById('signupForm').classList.add('active');
+            document.getElementById('loginForm').classList.remove('active');
+            document.getElementById('signupToggle').classList.add('active');
+            document.getElementById('loginToggle').classList.remove('active');
+        });
+
+        // Sign-up Form Submission
+        document.getElementById('signupForm').addEventListener('submit', function(event) {
+            event.preventDefault();  // Prevent form submission
+
+            const name = document.getElementById('signupName').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            const confirmPassword = document.getElementById('signupConfirmPassword').value;
+
+            // Check if passwords match
+            if (password !== confirmPassword) {
+                Swal.fire('Error!', 'Passwords do not match!', 'error');
+                return;
+            }
+
+            // Check if password is at least 8 characters long
+            if (password.length < 8) {
+                Swal.fire('Error!', 'Password must be at least 8 characters long!', 'error');
+                return;
+            }
+
+            // Store user data in localStorage (if not already registered)
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+
+            if (users.find(user => user.email === email)) {
+                Swal.fire('Error!', 'Email is already registered.', 'error');
+                return;
+            }
+
+            const newUser = { name, email, password };
+            users.push(newUser);
+            localStorage.setItem('users', JSON.stringify(users));
+            Swal.fire('Success!', 'Account created successfully!', 'success');
+            document.getElementById('signupForm').reset();
+        });
+
+        // Login Form Submission
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();  // Prevent form submission
+
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            const rememberMe = document.getElementById('rememberMe').checked;
+
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const user = users.find(user => user.email === email && user.password === password);
+
+            if (user) {
+                if (rememberMe) {
+                    localStorage.setItem('loggedInUser', JSON.stringify(user));
+                } else {
+                    sessionStorage.setItem('loggedInUser', JSON.stringify(user));
+                }
+                
+                // Display user icon and redirect
+                document.getElementById('userName').innerText = user.name;
+                document.getElementById('userIcon').style.display = 'block';
+                document.querySelector('.auth-container').style.display = 'none'; // Hide login/signup
+                Swal.fire('Success!', 'Login successful!', 'success').then(() => {
+                    window.location.href = 'dashboard.html'; // Redirect to dashboard
+                });
+            } else {
+                Swal.fire('Error!', 'Invalid email or password!', 'error');
+            }
+        });
+
+        // Logout Functionality
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            localStorage.removeItem('loggedInUser');
+            sessionStorage.removeItem('loggedInUser');
+            window.location.href = 'index.html'; // Redirect to home page
+        });
+    </script>
+
+    <!-- Bootstrap JS Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- AOS JS -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="./Assets/JS/main.js"></script>
+
+</body>
+</html>

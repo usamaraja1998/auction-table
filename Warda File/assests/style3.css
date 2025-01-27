@@ -1,0 +1,32 @@
+body {
+    background-color: white;
+    background: url(./mainpics/download.png);
+    background-size: 100%;
+    padding: 50px;
+}
+
+.carousel-item img {
+    border-radius: 10px;
+}
+
+.card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-right: 50px;
+}
+
+.alert {
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.input-group input {
+    font-size: 1.2rem;
+}
+
+.img {
+    border-radius: 20px;
+    margin-left: 60px;
+    box-shadow: 10px white;
+    height: 300px;
+    width: 300px;
+}

@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auction Table - Login & Sign-Up</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <style>
+        /* Custom Styles */
+
+        /* Smooth Transition for Navbar Background */
+        .navbar {
+            transition: background-color 0.5s ease;
+        }
+
+        .navbar.scrolled {
+            background-color: #ffffff !important;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Footer Link Hover Effect */
+        footer a:hover {
+            color: #ffc107 !important;
+            transition: color 0.3s ease;
+        }
+
+        /* Social Icons Hover Effect */
+        .bi {
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .bi:hover {
+            color: #ffc107 !important;
+            transform: scale(1.2);
+        }
+
+        /* Additional Padding for Body to Prevent Overlapping with Fixed Navbar */
+        body {
+            padding-top: 80px;
+        }
+
+        /* Login & Sign-Up Container */
+        .auth-container {
+            max-width: 500px;
+            margin: 50px auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        /* Toggle Buttons */
+        .toggle-btns {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .toggle-btns .btn {
+            width: 50%;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .toggle-btns .btn.active {
+            background-color: #0d6efd;
+            color: #ffffff;
+        }
+
+        /* Form Animations */
+        .form {
+            display: none;
+            animation: slideIn 0.5s forwards;
+        }
+
+        .form.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* Input Focus Effect */
+        .form-control:focus {
+            border-color: #0d6efd;
+            box-shadow: none;
+        }
+
+        /* Submit Button Hover Effect */
+        .btn-primary:hover, .btn-outline-primary:hover {
+            opacity: 0.9;
+            transition: opacity 0.3s;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 576px) {
+            .auth-container {
+                margin: 20px;
+                padding: 20px;
+            }
+
+            .toggle-btns .btn {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Header Section -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-sm">
+            <div class="container-fluid">
+                <!-- Left Side: Logo -->
+                <a class="navbar-brand" href="#">
+                    <img src="https://via.placeholder.com/120x40?text=Auction+Table" alt="Auction Table Logo" width="120">
+                </a>
+
+                <!-- Toggle Button for Mobile -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#auctionNavbar" aria-controls="auctionNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Middle: Menu Bar with Drop-down Categories -->
+                <div class="collapse navbar-collapse" id="auctionNavbar">
+                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                        <!-- Categories Dropdown -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="categoriesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Categories
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="categoriesDropdown">
+                                <li><a class="dropdown-item" href="#">Art</a></li>
+                                <li><a class="dropdown-item" href="#">Electronics</a></li>
+                                <li><a class="dropdown-item" href="#">Vehicles</a></li>
+                                <li><a class="dropdown-item" href="#">Real Estate</a></li>
+                                <li><a class="dropdown-item" href="#">Miscellaneous</a></li>
+                            </ul>
+                        </li>
+                        <!-- Additional Menu Items -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Live Auctions</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">How It Works</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact Us</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Right Side: Login and Sign-Up Buttons -->
+                <div class="d-flex">
+                    <a href="login.html" class="btn btn-outline-primary me-2">Login</a>
+                    <a href="signup.html" class="btn btn-primary">Sign Up</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content: Login and Sign-Up Forms -->
+    <main class="container my-5">
+        <div class="auth-container">
+            <div class="toggle-btns">
+                <button id="loginToggle" class="btn active">Login</button>
+                <button id="signupToggle" class="btn">Sign Up</button>
+            </div>
+
+            <!-- Login Form -->
+            <form id="loginForm" class="form active">
+                <h3 class="text-center mb-4">Login to Auction Table</h3>
+                <div class="mb-3">
+                    <label for="loginEmail" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="loginEmail" placeholder="Enter your email" required>
+                    <div class="invalid-feedback">
+                        Please enter a valid email.
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="loginPassword" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="loginPassword" placeholder="Enter your password" required>
+                    <div class="invalid-feedback">
+                        Please enter your password.
+                    </div>
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="rememberMe">
+                    <label class="form-check-label" for="rememberMe">Remember Me</label>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Login</button>
+            </form>
+
+            <!-- Sign-Up Form -->
+            <form id="signupForm" class="form">
+                <h3 class="text-center mb-4">Create an Account</h3>
+                <div class="mb-3">
+                    <label for="signupName" class="form-label">Full Name</label>
+                    <input type="text" class="form-control" id="signupName" placeholder="Enter your full name" required>
+                    <div class="invalid-feedback">
+                        Please enter your full name.
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="signupEmail" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="signupEmail" placeholder="Enter your email" required>
+                    <div class="invalid-feedback">
+                        Please enter a valid email.
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="signupPassword" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="signupPassword" placeholder="Create a password" required>
+                    <div class="invalid-feedback">
+                        Please create a password.
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="signupConfirmPassword" class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control" id="signupConfirmPassword" placeholder="Confirm your password" required>
+                    <div class="invalid-feedback">
+                        Passwords do not match.
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Sign Up</button>
+            </form>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-dark text-white pt-5 pb-4">
+        <div class="container text-md-left">
+            <div class="row text-md-left">
+                <!-- First Section: Logo and Description -->
+                <div class="col-md-4 col-lg-4 col-xl-4 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Auction Table</h5>
+                    <p>
+                        Auction Table is your premier destination for online auctions. Bid on a wide variety of items, from art and electronics to vehicles and real estate. Join our community today!
+                    </p>
+                </div>
+
+                <!-- Second Section: Quick Links -->
+                <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Home</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">About Us</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Services</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">FAQs</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Third Section: Social Links -->
+                <div class="col-md-5 col-lg-5 col-xl-5 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Follow Us</h5>
+                    <a href="#" class="text-white me-4" target="_blank">
+                        <i class="bi bi-facebook" style="font-size: 1.5rem;"></i>
+                    </a>
+                    <a href="#" class="text-white me-4" target="_blank">
+                        <i class="bi bi-twitter" style="font-size: 1.5rem;"></i>
+                    </a>
+                    <a href="#" class="text-white me-4" target="_blank">
+                        <i class="bi bi-instagram" style="font-size: 1.5rem;"></i>
+                    </a>
+                    <a href="#" class="text-white me-4" target="_blank">
+                        <i class="bi bi-linkedin" style="font-size: 1.5rem;"></i>
+                    </a>
+                    <a href="#" class="text-white" target="_blank">
+                        <i class="bi bi-youtube" style="font-size: 1.5rem;"></i>
+                    </a>
+                </div>
+            </div>
+
+            <hr class="mb-4">
+
+            <!-- Copyright -->
+            <div class="row align-items-center">
+                <div class="col-md-7 col-lg-8">
+                    <p>
+                        © 2024 Auction Table. All rights reserved.
+                    </p>
+                </div>
+                <!-- Optional: Additional Footer Content -->
+                <div class="col-md-5 col-lg-4">
+                    <div class="text-md-end">
+                        <a href="#" class="text-white text-decoration-none me-3">Privacy Policy</a>
+                        <a href="#" class="text-white text-decoration-none">Terms & Conditions</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // JavaScript for Navbar Scroll Effect
+        document.addEventListener("DOMContentLoaded", function () {
+            var navbar = document.querySelector('.navbar');
+
+            window.addEventListener('scroll', function () {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+        });
+
+        // JavaScript for Form Toggle
+        document.addEventListener("DOMContentLoaded", function () {
+            const loginToggle = document.getElementById('loginToggle');
+            const signupToggle = document.getElementById('signupToggle');
+            const loginForm = document.getElementById('loginForm');
+            const signupForm = document.getElementById('signupForm');
+
+            loginToggle.addEventListener('click', function () {
+                loginToggle.classList.add('active');
+                signupToggle.classList.remove('active');
+                loginForm.classList.add('active');
+                signupForm.classList.remove('active');
+            });
+
+            signupToggle.addEventListener('click', function () {
+                signupToggle.classList.add('active');
+                loginToggle.classList.remove('active');
+                signupForm.classList.add('active');
+                loginForm.classList.remove('active');
+            });
+        });
+
+        // JavaScript for Form Validation
+        (function () {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom validation to
+            const loginForm = document.getElementById('loginForm');
+            const signupForm = document.getElementById('signupForm');
+
+            // Login Form Validation
+            loginForm.addEventListener('submit', function (event) {
+                if (!loginForm.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
+
+                loginForm.classList.add('was-validated')
+            }, false)
+
+            // Sign-Up Form Validation
+            signupForm.addEventListener('submit', function (event) {
+                if (!signupForm.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
+
+                // Check if passwords match
+                const password = document.getElementById('signupPassword').value;
+                const confirmPassword = document.getElementById('signupConfirmPassword').value;
+
+                if (password !== confirmPassword) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    document.getElementById('signupConfirmPassword').classList.add('is-invalid');
+                } else {
+                    document.getElementById('signupConfirmPassword').classList.remove('is-invalid');
+                }
+
+                signupForm.classList.add('was-validated')
+            }, false)
+        })();
+    </script>
+</body>
+</html>

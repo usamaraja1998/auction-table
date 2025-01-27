@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auction Page</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Sweetalert2 cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.15.3/sweetalert2.min.css" integrity="sha512-3bdkpOykC7wpzR4qbckcUqr4rYKabC1FIAXuJKP08/qRKOFvjSfWtssxAIRW2ItB7wPLWJgXYYn+GePEJzgeTw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <script src="./Assets/JS/include.js"></script>
+
+    <link rel="stylesheet" href="./Assets/CSS/Style.css">
+
+  
+</head>
+
+<body>
+
+     <!-- Header Section -->
+
+     <script>
+        document.write(nav)
+    </script>
+
+    <!-- Container for the Auction Page -->
+    <div class="container mt-4">
+        <div class="row">
+            <!-- Left Side: Car Images & 360 Viewer -->
+            <div class="col-md-7">
+                <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+
+                    <div class="carousel-item active">
+                        <img src="https://www.fitoor.com.pk/wp-content/uploads/2024/10/P1100501-1200x900.jpg" class="d-block w-100%" alt="Car Front">
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExample" role="button" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExample" role="button" data-bs-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </a>
+                </div>
+               
+            </div>
+
+            <!-- Right Side: Auction Details -->
+            <div class="col-md-5">
+                <div class="card p-3">
+                    <h3>hand made oil painting</h3>
+                    <ul class="list-unstyled">
+                        <li><strong>Bids:</strong> <span id="bidCount">96</span></li>
+                        <li><strong>Time Remaining:</strong> <span id="timeRemaining">2h: 30m</span></li>
+                    </ul>
+                    <div class="alert alert-success">
+                        Current Price: <strong id="currentPrice">Rs.5,900</strong>
+                    </div>
+                    <!-- Bidding Area -->
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">PKR</span>
+                        <input type="number" class="form-control" id="bidAmount" value="6,000" min="6,000">
+                        <button class="btn btn-danger" id="bidNowBtn">Bid Now</button>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="agreeTerms">
+                        <label class="form-check-label" for="agreeTerms">
+                            I agree to <a href="#">Terms and Conditions</a>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer Section -->
+    <script>
+        document.write(footer)
+    </script>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- sweetalert2 cdn -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.15.3/sweetalert2.min.js" integrity="sha512-/QFfrLSYS5lqgT3heSqsPOR1YqB+eLGT3ppzuxrdQueeWlD2P/YDXZop3wqV+eijiRqTFRHVYozRfW9bW5knUw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    const bidNowBtn = document.getElementById('bidNowBtn');
+    const bidAmount = document.getElementById('bidAmount');
+    const currentPrice = document.getElementById('currentPrice');
+    const bidCount = document.getElementById('bidCount');
+    const agreeTerms = document.getElementById('agreeTerms');
+
+    let currentBid = 5900;
+    let bids = 96;
+
+    bidNowBtn.addEventListener('click', () => {
+        if (!agreeTerms.checked) {
+            alert('Please agree to the Terms and Conditions.');
+            return;
+        }
+        const newBid = parseInt(bidAmount.value);
+        if (newBid > currentBid) {
+            currentBid = newBid;
+            bids += 1;
+            currentPrice.textContent = `PKR ${currentBid}`;
+            bidCount.textContent = bids;
+            Swal.fire({
+                title: "Bid Succesful",
+                text: "your bid has been placed!",
+                icon: "success"
+            });
+        } else {
+            Swal.fire({
+                title: "Bid Amount must higher Current Price",
+                text: "your bid has not been placed!",
+                icon: "Error"
+            });
+        }
+    });
+});
+    </script>
+
+<script src="./Assets/JS/main.js"></script>
+</body>
+
+</html>

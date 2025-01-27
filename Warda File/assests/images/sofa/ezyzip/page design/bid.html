@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/> 
+    <title>Bidding Card</title>
+</head>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    background: #f2f2f2;
+    margin: 20px;
+    color: #333;
+}
+
+.bidding-card {
+    max-width: 350px;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 0 auto;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+}
+
+.header-section {
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.lot-number {
+    margin: 0;
+    font-size: 16px;
+    font-weight: normal;
+    color: #666;
+}
+
+.vehicle-name {
+    margin: 5px 0 15px 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.details-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.detail {
+    text-align: center;
+    flex: 1;
+    margin: 0 5px;
+}
+
+.detail .label {
+    display: block;
+    color: #999;
+    font-size: 12px;
+    margin-bottom: 2px;
+}
+
+.detail .value {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.end-date {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.end-date .label {
+    color: #999;
+    font-size: 12px;
+}
+
+.end-date .value {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.add-calendar-btn {
+    background: #f2f2f2;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.add-calendar-btn:hover {
+    background: #ddd;
+}
+
+.price-section {
+    background: #333;
+    color: #fff;
+    padding: 20px;
+}
+
+.price-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.price-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+.price-label {
+    color: #bbb;
+}
+
+.price-value {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.available-limit .price-value {
+    color: #f00;
+}
+
+.bidding-section {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.bidding-amount-container label {
+    font-size: 13px;
+    color: #333;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.bidding-input {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.bidding-input button {
+    background: #f2f2f2;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.bidding-input button:hover {
+    background: #ddd;
+}
+
+.bidding-input input {
+    width: 60px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    padding: 5px;
+}
+
+.auto-bid-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    color: #333;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 22px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 22px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    border-radius: 50%;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #4caf50;
+}
+
+input:checked + .slider:before {
+    transform: translateX(18px);
+}
+
+.terms-row {
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.terms-row input {
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+.terms-row a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.terms-row a:hover {
+    text-decoration: underline;
+}
+
+.bid-now-btn {
+    background: #c00;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    transition: background 0.3s;
+}
+
+.bid-now-btn:hover:enabled {
+    background: #a00;
+}
+
+.bid-now-btn:disabled {
+    background: #bbb;
+    cursor: not-allowed;
+}
+
+</style>
+<body>
+
+<div class="bidding-card">
+    <div class="header-section">
+        <h2 class="lot-number">Lot # 524506</h2>
+        <h3 class="vehicle-name">2016 Mini Cooper</h3>
+        <div class="details-row">
+            <div class="detail">
+                <span class="label">Bids</span>
+                <span class="value">0</span>
+            </div>
+            <div class="detail">
+                <span class="label">Mileage</span>
+                <span class="value">161,503 Km</span>
+            </div>
+            <div class="detail">
+                <span class="label">Time remaining</span>
+                <span class="value">7d : 2h : 7m</span>
+            </div>
+        </div>
+        <div class="end-date">
+            <span class="label">End Date</span>
+            <span class="value">Dec 23, 06:00 PM</span>
+            <button class="add-calendar-btn">Add to Calendar</button>
+        </div>
+    </div>
+
+    <div class="price-section">
+        <div class="price-info">
+            <div class="price-row">
+                <div class="price-label">Current Price</div>
+                <div class="price-value">AED 100</div>
+            </div>
+            <div class="price-row">
+                <div class="price-label">Min Increment:</div>
+                <div class="price-value">AED 100</div>
+            </div>
+            <div class="price-row available-limit">
+                <div class="price-label">Available Limit:</div>
+                <div class="price-value">AED 0</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bidding-section">
+        <div class="bidding-amount-container">
+            <label for="biddingAmount">Bidding Amount</label>
+            <div class="bidding-input">
+                <button type="button" class="decrement" aria-label="decrement">-</button>
+                <input type="number" id="biddingAmount" value="200" min="0" readonly />
+                <button type="button" class="increment" aria-label="increment">+</button>
+            </div>
+        </div>
+
+        <div class="auto-bid-row">
+            <span>Auto Bid</span>
+            <label class="switch">
+                <input type="checkbox" id="autoBid">
+                <span class="slider round"></span>
+            </label>
+        </div>
+
+        <div class="terms-row">
+            <label>
+                <input type="checkbox" id="terms" required />
+                <span>I agree to <a href="#" target="_blank">Terms and Conditions</a> &amp; I have inspected the item</span>
+            </label>
+        </div>
+
+        <button class="bid-now-btn" type="button" disabled>Bid Now</button>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const decrementBtn = document.querySelector('.decrement');
+    const incrementBtn = document.querySelector('.increment');
+    const biddingAmountInput = document.getElementById('biddingAmount');
+    const termsCheckbox = document.getElementById('terms');
+    const bidNowBtn = document.querySelector('.bid-now-btn');
+
+    // Enable/disable bid button based on terms checkbox
+    termsCheckbox.addEventListener('change', () => {
+        bidNowBtn.disabled = !termsCheckbox.checked;
+    });
+
+    decrementBtn.addEventListener('click', () => {
+        let val = parseInt(biddingAmountInput.value, 10);
+        if (val > 0) {
+            biddingAmountInput.value = val - 100;
+        }
+    });
+
+    incrementBtn.addEventListener('click', () => {
+        let val = parseInt(biddingAmountInput.value, 10);
+        biddingAmountInput.value = val + 100;
+    });
+
+    // Optional: Add event listener to bidNowBtn for further integration
+    bidNowBtn.addEventListener('click', () => {
+        if (!termsCheckbox.checked) {
+            alert('Please agree to the Terms and Conditions before bidding.');
+            return;
+        }
+        // Here you can add logic to submit the bid to your backend
+        alert('Bid submitted successfully at ' + biddingAmountInput.value + ' AED!');
+    });
+});
+
+</script>
+</body>
+</html>

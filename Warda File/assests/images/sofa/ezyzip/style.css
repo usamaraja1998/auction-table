@@ -1,0 +1,16 @@
+body {
+    background-color: #f8f9fa;
+}
+.carousel-item img {
+    border-radius: 10px;
+}
+.card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.alert {
+    text-align: center;
+    font-size: 1.5rem;
+}
+.input-group input {
+    font-size: 1.2rem;
+}

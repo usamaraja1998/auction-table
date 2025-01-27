@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"/>
+    <title>Bid Section</title>
+
+    <style>
+        .card-dark-bg {
+            background: #333;
+            color: #fff;
+            border: none;
+        }
+        .price-text {
+            color: #43a047; /* Green tone for the price text */
+        }
+        .divider {
+            border-top: 1px solid #444;
+        }
+        .input-group .btn {
+            min-width: 40px;
+        }
+        .form-check-label a {
+            text-decoration: underline;
+            color: #fff;
+        }
+        .btn-danger {
+            background-color: #d32f2f;
+            border: none;
+        }
+        .btn-danger:hover {
+            background-color: #b71c1c;
+        }
+    </style>
+</head>
+<body class="bg-dark">
+
+<div class="container my-4">
+    <div class="card card-dark-bg p-3">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h6 class="mb-0">Lot # 520104</h6>
+            <div>
+                <a href="#" class="text-light me-3"><i class="bi bi-heart"></i></a>
+                <a href="#" class="text-light me-3"><i class="bi bi-binoculars"></i></a>
+                <a href="#" class="text-light"><i class="bi bi-share"></i></a>
+            </div>
+        </div>
+
+        <h4 class="mb-1 fw-bold">2024 Audi RS 7</h4>
+
+        <div class="d-flex flex-wrap text-center my-3">
+            <div class="px-3 py-2">
+                <div class="fw-bold">Bids</div>
+                <div>96</div>
+            </div>
+            <div class="px-3 py-2">
+                <div class="fw-bold">Mileage</div>
+                <div>2,433 Km</div>
+            </div>
+            <div class="px-3 py-2">
+                <div class="fw-bold">Time remaining</div>
+                <div>2h : 30m</div>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <div class="small text-muted">
+                <i class="bi bi-calendar3"></i> End Date: Dec 17, 06:00 PM
+            </div>
+            <button class="btn btn-outline-light btn-sm">Add to Calendar</button>
+        </div>
+
+        <div class="divider my-3"></div>
+
+        <div class="row g-2">
+            <div class="col-12 col-md-4">
+                <div class="text-muted fw-bold">Current Price</div>
+                <div class="price-text fs-4">AED 430,100</div>
+            </div>
+            <div class="col-6 col-md-4">
+                <div class="text-muted fw-bold">Min Increment</div>
+                <div>AED 100</div>
+            </div>
+            <div class="col-6 col-md-4">
+                <div class="text-muted fw-bold">Available Limit</div>
+                <div>AED 0</div>
+            </div>
+        </div>
+
+        <div class="divider my-4"></div>
+
+        <div class="mb-3 fw-bold">Bidding Amount</div>
+        <div class="input-group mb-3" style="max-width: 200px;">
+            <button class="btn btn-outline-light" type="button" id="btnMinus">-</button>
+            <input type="text" class="form-control text-center" id="bidAmount" value="430,200">
+            <button class="btn btn-outline-light" type="button" id="btnPlus">+</button>
+        </div>
+
+        <div class="d-flex align-items-center mb-3">
+            <div class="form-check form-switch me-auto">
+                <input class="form-check-input" type="checkbox" id="autoBid">
+                <label class="form-check-label" for="autoBid">Auto Bid</label>
+            </div>
+        </div>
+
+        <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" id="termsCheck">
+            <label class="form-check-label" for="termsCheck">
+                I agree to <a href="#">Terms and Conditions</a> & have inspected the item
+            </label>
+        </div>
+
+        <div class="d-grid">
+            <button class="btn btn-danger fw-bold py-2">Bid Now</button>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap 5 JS and Dependencies -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    const btnPlus = document.getElementById('btnPlus');
+    const btnMinus = document.getElementById('btnMinus');
+    const bidAmount = document.getElementById('bidAmount');
+
+    btnPlus.addEventListener('click', () => {
+        let currentVal = parseInt(bidAmount.value.replace(/,/g, ''));
+        bidAmount.value = (currentVal + 100).toLocaleString();
+    });
+
+    btnMinus.addEventListener('click', () => {
+        let currentVal = parseInt(bidAmount.value.replace(/,/g, ''));
+        if (currentVal > 430200) {
+            bidAmount.value = (currentVal - 100).toLocaleString();
+        }
+    });
+</script>
+
+</body>
+</html>
